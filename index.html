@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Login | NestAxis Premium Portal</title>
+    
+    <!-- Unified Production Design System Architecture -->
+    <style>
+        :root {
+            /* Color Palette Design Tokens */
+            --color-primary: #0F766E;        /* Deep Emerald Teal */
+            --color-primary-hover: #0D5C56;  /* Darker Teal for interaction */
+            --color-accent: #F59E0B;         /* Warm Amber */
+            --color-secondary: #1E293B;      /* Slate Dark (Foundational Typography) */
+            --color-bg: #F8FAFC;             /* Clean Canvas Off-White */
+            --color-surface: #FFFFFF;        /* Crisp Card Backplates */
+            --color-border: #E2E8F0;         /* Subtle structural borders */
+            --color-text-main: #334155;      /* High-contrast body text */
+            --color-text-muted: #64748B;     /* Soft stone gray helper captions */
+            
+            /* Typography Systems */
+            --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-main: 'Inter', system-ui, sans-serif;
+            
+            /* Global Component Geometry */
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-card: 0 10px 25px -5px rgba(30, 41, 59, 0.04), 0 8px 10px -6px rgba(30, 41, 59, 0.04);
+        }
+
+        /* Modern Document Base Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Page Background Layer (Visible on Desktop & Tablet) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Sophisticated dark teal overlay to mimic luxury real estate splash views */
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 118, 110, 0.85) 100%);
+            z-index: -1;
+        }
+
+        /* Layout & Container Card UI Components */
+        .auth-card {
+            width: 100%;
+            max-width: 460px;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-card);
+            z-index: 10;
+        }
+
+        /* Brand Identity Layout Elements */
+        .brand-wrapper {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .brand-logo-block {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .logo-icon-fallback {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(15, 118, 110, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            font-weight: 800;
+            font-size: 20px;
+            border: 1px solid rgba(15, 118, 110, 0.2);
+        }
+
+        .brand-title-text {
+            font-family: var(--font-heading);
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--color-secondary);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-accent-span {
+            color: var(--color-primary);
+        }
+
+        .page-headline {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 6px;
+        }
+
+        .page-subheadline {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* Form Layout Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-main);
+            font-size: 15px;
+            color: var(--color-secondary);
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        /* Accessible Input Focus States */
+        .form-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+        }
+
+        .form-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .remember-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-main);
+            cursor: pointer;
+        }
+
+        .native-checkbox {
+            accent-color: var(--color-primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .interactive-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .interactive-link:hover {
+            color: var(--color-primary-hover);
+            text-decoration: underline;
+        }
+
+        .btn-primary-action {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--color-primary);
+            color: var(--color-surface);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-main);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary-action:hover {
+            background-color: var(--color-primary-hover);
+        }
+
+        .card-footer-nav {
+            text-align: center;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN SYSTEM TARGET BREAKPOINTS
+           ========================================================================== */
+
+        /* Tablet Optimization (769px to 1024px) */
+        @media (max-width: 1024px) {
+            .auth-card {
+                max-width: 420px;
+                padding: 32px;
+            }
+        }
+
+        /* Mobile Fluid Optimization (320px to 768px) */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                background-color: var(--color-surface);
+            }
+            body::before {
+                display: none; /* Disables heavy gradient overlays on mobile viewports */
+            }
+            .auth-card {
+                max-width: 100%;
+                height: 100vh;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 40px 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Structural Portal Layout -->
+    <main class="auth-card">
+        
+        <!-- Platform Branding Module Header -->
+        <header class="brand-wrapper">
+            <div class="brand-logo-block">
+                <div class="logo-icon-fallback">N</div>
+                <span class="brand-title-text">Nest<span class="brand-accent-span">Axis</span></span>
+            </div>
+            <h1 class="page-headline">Sign In to Portal</h1>
+            <p class="page-subheadline">Access premium listings and active investments</p>
+        </header>
+
+        <!-- Dynamic Security Login Endpoint Form -->
+        <form action="#" method="POST">
+            
+            <!-- Email Access Module -->
+            <div class="form-group">
+                <label for="email" class="form-label">Authorized Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="investor@nestaxis.com" required autocomplete="email">
+            </div>
+
+            <!-- Password Access Module -->
+            <div class="form-group">
+                <label for="password" class="form-label">Security Password</label>
+                <input type="password" id="password" class="form-input" placeholder="••••••••••••" required autocomplete="current-password">
+            </div>
+
+            <!-- Interaction Row Components -->
+            <div class="form-options-row">
+                <label class="remember-checkbox-label">
+                    <input type="checkbox" class="native-checkbox" name="remember">
+                    <span>Remember terminal access</span>
+                </label>
+                <a href="forgot-password.html" class="interactive-link">Forgot password?</a>
+            </div>
+
+            <!-- Authentication Validation Trigger Button -->
+            <button type="submit" class="btn-primary-action">Authenticate Account</button>
+
+        </form>
+
+        <!-- Redirection Interface Link Footer Component -->
+        <footer class="card-footer-nav">
+            <p>New partner to the axis? <a href="register.html" class="interactive-link">Create Portal Account</a></p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
