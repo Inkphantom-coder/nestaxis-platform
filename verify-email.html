@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Identity | NestAxis Terminal</title>
+    <style>
+        :root {
+            --color-primary: #0F766E; --color-primary-hover: #0D5C56; --color-secondary: #1E293B;
+            --color-bg: #F8FAFC; --color-surface: #FFFFFF; --color-border: #E2E8F0;
+            --color-text-main: #334155; --color-text-muted: #64748B;
+            --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif; --font-main: 'Inter', system-ui, sans-serif;
+            --radius-lg: 12px; --radius-md: 8px; --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-card: 0 10px 25px -5px rgba(30, 41, 59, 0.04);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-main); background-color: var(--color-bg); color: var(--color-text-main); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; position: relative; }
+        body::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 118, 110, 0.85) 100%); z-index: -1; }
+        .auth-card { width: 100%; max-width: 460px; background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card); }
+        .brand-wrapper { text-align: center; margin-bottom: 28px; }
+        .brand-logo-block { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
+        .logo-icon-fallback { width: 40px; height: 40px; background-color: rgba(15, 118, 110, 0.1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-weight: 800; font-size: 20px; border: 1px solid rgba(15, 118, 110, 0.2); }
+        .brand-title-text { font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--color-secondary); }
+        .brand-accent-span { color: var(--color-primary); }
+        .page-headline { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--color-secondary); margin-bottom: 6px; }
+        .page-subheadline { font-size: 14px; color: var(--color-text-muted); }
+        
+        /* Specialized Multi-Box PIN Configuration */
+        .pin-container { display: flex; justify-content: space-between; gap: 8px; margin: 24px 0; }
+        .pin-box {
+            width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 700;
+            color: var(--color-secondary); background-color: var(--color-bg); border: 1px solid var(--color-border);
+            border-radius: var(--radius-md); outline: none; transition: var(--transition-smooth);
+        }
+        .pin-box:focus { border-color: var(--color-primary); box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12); background-color: var(--color-surface); }
+        
+        .btn-primary-action { width: 100%; padding: 14px; background-color: var(--color-primary); color: var(--color-surface); border: none; border-radius: var(--radius-md); font-family: var(--font-main); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); }
+        .btn-primary-action:hover { background-color: var(--color-primary-hover); }
+        .card-footer-nav { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: 14px; color: var(--color-text-muted); }
+        .interactive-link { color: var(--color-primary); text-decoration: none; font-weight: 600; transition: var(--transition-smooth); }
+        .interactive-link:hover { color: var(--color-primary-hover); text-decoration: underline; }
+        @media (max-width: 768px) {
+            body { padding: 0; background-color: var(--color-surface); }
+            body::before { display: none; }
+            .auth-card { max-width: 100%; height: 100vh; border: none; box-shadow: none; border-radius: 0; padding: 40px 24px; display: flex; flex-direction: column; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <main class="auth-card">
+        <header class="brand-wrapper">
+            <div class="brand-logo-block">
+                <div class="logo-icon-fallback">N</div>
+                <span class="brand-title-text">Nest<span class="brand-accent-span">Axis</span></span>
+            </div>
+            <h1 class="page-headline">Enter Security Code</h1>
+            <p class="page-subheadline">We sent a 6-digit validation passcode to your security profile.</p>
+        </header>
+        <form action="reset-password.html" method="GET">
+            <div class="pin-container">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+                <input type="text" class="pin-box" maxlength="1" required pattern="[0-9]">
+            </div>
+            <button type="submit" class="btn-primary-action">Verify Security Code</button>
+        </form>
+        <footer class="card-footer-nav">
+            <p>Didn't receive verification? <a href="#" class="interactive-link">Resend Token</a></p>
+        </footer>
+    </main>
+</body>
+</html>
